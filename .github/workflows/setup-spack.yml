@@ -20,17 +20,28 @@ jobs:
     # The type of runner that the job will run on
     runs-on: self-hosted  # Must match your runner label(s) 
 
+    env:
+      SPACK_INSTALL_DIR: /home/parikshit/spack
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Check if Spack is already installed
+        id: check-spack
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          if [ -d "${SPACK_INSTALL_DIR}" ]; then
+            echo "Spack already installed at ${SPACK_INSTALL_DIR}"
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Spack not found."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Spack if not found
+        if: steps.check-spack.outputs.found == 'false'
+        run: |
+          git clone -c feature.manyFiles=true --depth=2 https://github.com/spack/spack.git "${SPACK_INSTALL_DIR}"
+
+      - name: Source Spack and test
+        run: |
+          . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
+          spack --version
