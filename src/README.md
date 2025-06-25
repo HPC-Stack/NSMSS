@@ -1,4 +1,4 @@
-[⚠️ Suspicious Content] # E4S Release 25.06
+# E4S Release 25.06
 
 June 2025 release of E4S
 
