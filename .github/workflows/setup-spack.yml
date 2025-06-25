@@ -45,3 +45,11 @@ jobs:
         run: |
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
           spack --version
+      
+      - name: Detect compilers and external packages
+        run: |
+          . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
+          spack compiler find
+          spack external find
+          echo "==> Compilers:"
+          spack compilers
