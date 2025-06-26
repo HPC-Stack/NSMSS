@@ -1,1 +1,3 @@
-
+# Ignore Spack environment metadata
+**/.spack-env
+**/spack.lock

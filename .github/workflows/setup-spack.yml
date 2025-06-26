@@ -53,3 +53,10 @@ jobs:
           spack external find
           echo "==> Compilers:"
           spack compilers
+      
+      - name: Add mirror
+        run: |
+          . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
+          spack mirror add rudra /scratch/parikshit/spack-cache
+          spack buildcache update-index 
+
