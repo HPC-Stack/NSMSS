@@ -58,5 +58,5 @@ jobs:
         run: |
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
           spack mirror add rudra /scratch/parikshit/spack-cache
-          spack buildcache update-index 
+          spack buildcache update-index /scratch/parikshit/spack-cache
 

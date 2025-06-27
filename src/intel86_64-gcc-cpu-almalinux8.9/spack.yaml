@@ -24,8 +24,8 @@ spack:
       extra_rpaths: []
 
   specs:
-  - gcc@9.5.0
-  - openmpi@4.1.6+legacylaunchers+pmi
+  - gcc@12.4.0
+  - openmpi@4.1.6+legacylaunchers
 
   mirrors:
     rudra: file:///scratch/parikshit/spack-cache

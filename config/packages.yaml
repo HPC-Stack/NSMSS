@@ -1,115 +1,119 @@
 packages:
-  git:
+  slurm:
     externals:
-    - spec: git@2.43.5~tcltk
-      prefix: /usr
-  flex:
-    externals:
-    - spec: flex@2.6.1+lex
-      prefix: /usr
-  texinfo:
-    externals:
-    - spec: texinfo@6.5
-      prefix: /usr
-  npm:
-    externals:
-    - spec: npm@8.19.4
-      prefix: /usr
-  cmake:
-    externals:
-    - spec: cmake@3.26.5
-      prefix: /usr
-  m4:
-    externals:
-    - spec: m4@1.4.18
-      prefix: /usr
-  automake:
-    externals:
-    - spec: automake@1.16.1
-      prefix: /usr
-  libtool:
-    externals:
-    - spec: libtool@2.4.6
-      prefix: /usr
-  openssl:
-    externals:
-    - spec: openssl@1.1.1k
-      prefix: /usr
-  openssh:
-    externals:
-    - spec: openssh@8.0p1
-      prefix: /usr
-  perl:
-    externals:
-    - spec: perl@5.26.3~cpanm+opcode+open+shared+threads
-      prefix: /usr
-  python:
-    externals:
-    - spec: python@3.6.8+bz2+crypt+ctypes+dbm+lzma+pyexpat+pythoncmd+readline+sqlite3+ssl~tkinter+uuid+zlib
+    - spec: slurm@23.11.10
       prefix: /usr
   gmake:
     externals:
     - spec: gmake@4.2.1
       prefix: /usr
-  zlib:
+  m4:
     externals:
-    - spec: zlib@1.2.11
+    - spec: m4@1.4.18
       prefix: /usr
-  autoconf:
+  cmake:
     externals:
-    - spec: autoconf@2.69
+    - spec: cmake@3.26.5
       prefix: /usr
   curl:
     externals:
     - spec: curl@7.61.1+gssapi+ldap+nghttp2
       prefix: /usr
-  sed:
+  gettext:
     externals:
-    - spec: sed@4.5
+    - spec: gettext@0.19.8.1
       prefix: /usr
-  coreutils:
+  python:
     externals:
-    - spec: coreutils@8.30
+    - spec: python@3.6.8+bz2+crypt+ctypes+dbm+lzma+pyexpat~pythoncmd+readline+sqlite3+ssl~tkinter+uuid+zlib
       prefix: /usr
-  diffutils:
+  openssh:
     externals:
-    - spec: diffutils@3.6
-      prefix: /usr
-  groff:
-    externals:
-    - spec: groff@1.22.3
-      prefix: /usr
-  binutils:
-    externals:
-    - spec: binutils@2.30.123~gold~headers
-      prefix: /usr
-  findutils:
-    externals:
-    - spec: findutils@4.6.0
+    - spec: openssh@8.0p1
       prefix: /usr
   tar:
     externals:
     - spec: tar@1.30
       prefix: /usr
+  groff:
+    externals:
+    - spec: groff@1.22.3
+      prefix: /usr
+  coreutils:
+    externals:
+    - spec: coreutils@8.30
+      prefix: /usr
+  findutils:
+    externals:
+    - spec: findutils@4.6.0
+      prefix: /usr
   bison:
     externals:
     - spec: bison@3.0.4
       prefix: /usr
-  gawk:
+  automake:
     externals:
-    - spec: gawk@4.2.1
-      prefix: /usr
-  subversion:
-    externals:
-    - spec: subversion@1.10.2
+    - spec: automake@1.16.1
       prefix: /usr
   pkgconf:
     externals:
     - spec: pkgconf@1.4.2
       prefix: /usr
-  gettext:
+  autoconf:
     externals:
-    - spec: gettext@0.19.8.1
+    - spec: autoconf@2.69
+      prefix: /usr
+  gawk:
+    externals:
+    - spec: gawk@4.2.1
+      prefix: /usr
+  openssl:
+    externals:
+    - spec: openssl@1.1.1k
+      prefix: /usr
+  git:
+    externals:
+    - spec: git@2.43.5~tcltk
+      prefix: /usr
+  subversion:
+    externals:
+    - spec: subversion@1.10.2
+      prefix: /usr
+  flex:
+    externals:
+    - spec: flex@2.6.1+lex
+      prefix: /usr
+  npm:
+    externals:
+    - spec: npm@6.14.11
+      prefix: /usr
+  libtool:
+    externals:
+    - spec: libtool@2.4.6
+      prefix: /usr
+  perl:
+    externals:
+    - spec: perl@5.26.3~cpanm+opcode+open+shared+threads
+      prefix: /usr
+  texinfo:
+    externals:
+    - spec: texinfo@6.5
+      prefix: /usr
+  sed:
+    externals:
+    - spec: sed@4.5
+      prefix: /usr
+  binutils:
+    externals:
+    - spec: binutils@2.30.123~gold~headers
+      prefix: /usr
+  diffutils:
+    externals:
+    - spec: diffutils@3.6
+      prefix: /usr
+  zlib:
+    externals:
+    - spec: zlib@1.2.11
       prefix: /usr
   gcc:
     externals:
@@ -120,7 +124,3 @@ packages:
           c: /usr/bin/gcc
           cxx: /usr/bin/g++
           fortran: /usr/bin/gfortran
-  slurm:
-    externals:
-    - spec: slurm@23.02.7
-      prefix: /usr
