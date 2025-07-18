@@ -51,6 +51,7 @@ jobs:
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
           spack compiler find
           spack external find
+          spack external find --not-buildable slurm
           echo "==> Compilers:"
           spack compilers
       
