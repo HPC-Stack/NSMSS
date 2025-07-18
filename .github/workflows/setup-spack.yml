@@ -56,9 +56,15 @@ jobs:
           spack compilers
       
       - name: Add mirror
-        if: env.RUN_MIRROR_STEP == 'true'
         run: |
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
-          spack mirror add rudra /scratch/parikshit/spack-cache
+          
+          if ! spack mirror list | grep -q '^rudra'; then
+            spack mirror add rudra /scratch/parikshit/spack-cache
+          else
+            echo "Mirror 'rudra' already exists, skipping add."
+          fi
+
           spack buildcache update-index /scratch/parikshit/spack-cache
+
 
