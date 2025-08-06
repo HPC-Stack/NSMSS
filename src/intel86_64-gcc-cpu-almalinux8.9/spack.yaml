@@ -1,7 +1,5 @@
 spack:
-  include:
-    - ../../config/packages.yaml
-  
+
   view: false
 
   concretizer:
@@ -22,10 +20,63 @@ spack:
       modules: []
       environment: {}
       extra_rpaths: []
+  
+  packages:
+    all:
+      target: [x86_64]
+      require:
+      - 'target=x86_64'
+      - '%gcc@11.5.0'
+      providers:
+        blas: [openblas]
+        lapack: [openblas]
+        mpi: [openmpi]
+      variants: +mpi
+    
+    binutils:
+      variants: +ld +gold +headers +libiberty ~nls
+    blas:
+      require: openblas
+    cmake:
+      require:
+      - '~qtgui'
+      - 'target=x86_64'
+      - '%gcc@11.5.0'
+    gmake:
+      require:
+      - '~guile'
+      - 'target=x86_64'
+      - '%gcc@11.5.0'
+    hdf5:
+      variants: +fortran +hl +shared
+    lapack:
+      require: openblas
+    libfabric:
+      variants: fabrics=sockets,tcp,udp,rxm
+    libunwind:
+      variants: +pic +xz
+    openblas:
+      variants: +fortran+consistent_fpcsr+ilp64 threads=openmp
+    
+
+    # externals
+    python:
+      prefer:
+      - "@3.6.8"
+      externals:
+      - spec: python@3.6.8+bz2+crypt+ctypes+dbm+lzma+nis+pyexpat+pythoncmd+readline+sqlite3+ssl~tkinter+uuid+zlib
+        prefix: /usr
+
 
   specs:
-  - gcc@12.4.0
-  - openmpi@4.1.6+legacylaunchers
+  - gcc@9.5.0+binutils+piclibs languages=c,c++,fortran
+  - gcc@11.5.0+binutils+piclibs languages=c,c++,fortran
+  - gcc@12.2.0+binutils+piclibs languages=c,c++,fortran
+  - gcc@13.3.0+binutils+piclibs languages=c,c++,fortran
+  - openmpi@4.1.6~atomics~cuda+cxx+cxx_exceptions~gpfs~internal-hwloc~internal-libevent~internal-pmix~java+legacylaunchers~lustre~memchecker~openshmem~orterunprefix~pmi+romio+rsh~singularity+static~vt+wrapper-rpath build_system=autotools fabrics=hcoll,ofi,ucx romio-filesystem=lustre schedulers=slurm
+  - openblas+fortran+consistent_fpcsr+ilp64 threads=openmp
+  - reframe@4.0.1
+
 
   mirrors:
     rudra: file:///scratch/parikshit/spack-cache
