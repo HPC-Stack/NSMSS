@@ -2,29 +2,26 @@
 
 name: Setup Spack on Self-Hosted
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: self-hosted  # Must match your runner label(s) 
+    runs-on: self-hosted
 
     env:
       SPACK_INSTALL_DIR: /home/parikshit/spack
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: .   # This ensures files are checked out directly to $GITHUB_WORKSPACE
+
       - name: Check if Spack is already installed
         id: check-spack
         run: |
@@ -54,10 +51,11 @@ jobs:
           spack external find
           spack external find --not-buildable slurm
 
-      - name: Buid compilers
+      - name: Build compilers
         run: | 
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
           echo "==> Compilers:"
+          echo $GITHUB_WORKSPACE
           spack compilers
           cd $GITHUB_WORKSPACE/compilers
           spack env activate .
@@ -68,13 +66,9 @@ jobs:
       - name: Add mirror
         run: |
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
-          
           if ! spack mirror list | grep -q '^rudra'; then
             spack mirror add rudra /scratch/parikshit/spack-cache
           else
             echo "Mirror 'rudra' already exists, skipping add."
           fi
-
           spack buildcache update-index /scratch/parikshit/spack-cache
-
-
