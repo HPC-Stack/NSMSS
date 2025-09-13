@@ -8,7 +8,7 @@ E4S is available to download in the following formats:
   
   - Spack manifest (`spack.yaml`) to install from source. These can be found in [environments](https://github.com/E4S-Project/e4s/tree/master/environments) directory.
    
-  - [E4S Build Cache](https://oaciss.uoregon.edu/e4s/inventory.html)
+  - [NSMSS Build Cache](https://oaciss.uoregon.edu/e4s/inventory.html)
 
 
 ## Useful Links
@@ -34,6 +34,5 @@ E4S is available to download in the following formats:
 ## Contact
 
  - Parikshit Ardhapurkar (aparikshit@cdac.in)
- -  (sameer@cs.uoregon.edu)
  
 

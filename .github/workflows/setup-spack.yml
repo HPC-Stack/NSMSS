@@ -39,11 +39,8 @@ jobs:
       - name: Install Spack if not found
         if: steps.check-spack.outputs.found == 'false'
         run: |
-          git clone -c feature.manyFiles=true --depth=2 --branch=releases/V1.0.1 
-          https://github.com/spack/spack.git "${SPACK_INSTALL_DIR}"
+          git clone -c feature.manyFiles=true --depth=2 --branch=releases/v0.23 https://github.com/spack/spack.git "${SPACK_INSTALL_DIR}"
           cd $SPACK_INSTALL_DIR
-          git fetch --tags
-          git checkout v0.23.1
 
       - name: Source Spack and test
         run: |
@@ -58,6 +55,11 @@ jobs:
           spack external find --not-buildable slurm
           echo "==> Compilers:"
           spack compilers
+          spack install gcc@9.5.0
+          spack install gcc@11
+          spack install gcc@12
+          spack install gcc@13
+          spack install gcc@14
       
       - name: Add mirror
         run: |
