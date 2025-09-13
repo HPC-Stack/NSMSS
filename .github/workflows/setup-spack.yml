@@ -55,9 +55,8 @@ jobs:
         run: | 
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
           echo "==> Compilers:"
-          echo $GITHUB_WORKSPACE
           spack compilers
-          cd $GITHUB_WORKSPACE/compilers
+          cd $GITHUB_WORKSPACE/src/compilers
           spack env activate .
           spack env status
           spack concretize
