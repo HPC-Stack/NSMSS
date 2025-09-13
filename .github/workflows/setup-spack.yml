@@ -53,13 +53,16 @@ jobs:
           spack compiler find
           spack external find
           spack external find --not-buildable slurm
+
+      - name: Buid compilers
+        run: | 
           echo "==> Compilers:"
           spack compilers
-          spack install gcc@9.5.0
-          spack install gcc@11
-          spack install gcc@12
-          spack install gcc@13
-          spack install gcc@14
+          cd $GITHUB_WORKSPACE/compilers
+          spack env activate .
+          spack env status
+          spack concretize
+          spack install
       
       - name: Add mirror
         run: |
