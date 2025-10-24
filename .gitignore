@@ -1,3 +1,4 @@
 # Ignore Spack environment metadata
 **/.spack-env
 **/spack.lock
+NSMSS.code-workspace
