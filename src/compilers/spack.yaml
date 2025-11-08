@@ -11,10 +11,11 @@ spack:
   - gcc@13
   - gcc@14
   - gcc@15
+  - nvhpc+mpi
+  - intel-oneapi-compilers
+  - intel-oneapi-compilers-classic
   view: false
   concretizer:
-    unify: false
+    unify: when_possible
   mirrors:
-    rudra:
-      url: /scratch/parikshit/spack-cache
-      signed: false
+    rudra: /scratch/parikshit/spack-cache
