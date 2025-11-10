@@ -5,18 +5,20 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - openmpi@4+cxx+cxx_exceptions+fortran+internal-pmix+legacylaunchers+orterunprefix+romio+rsh+static+wrapper-rpath build_system=autotools fabrics:=auto schedulers:=slurm
-  - openmpi@5 fabrics:=auto schedulers:=slurm
-  - gromacs
-  - lammps
-  - libint~debug~fma+fortran build_system=autotools tune=cp2k-lmax-5
-  - cp2k smm=blas
-  - openfoam ^yaml-cpp ^adios2 cxxflags="-include cstdint"
-  - quantum-espresso
-  - nwchem@master
-  - atompaw ^libxc
-  - hdf5@1.14.6 +mpi +shared +tools ^gcc@15
-  - abinit+openmp 
+  - openmpi@4+cxx+cxx_exceptions+fortran+internal-pmix+legacylaunchers+orterunprefix+romio+rsh+static+wrapper-rpath build_system=autotools fabrics:=auto schedulers:=slurm ^gcc
+  - openmpi@5 fabrics:=auto schedulers:=slurm ^gcc
+  - gromacs ^gcc
+  - libint ^gmp+cxx ^gcc@8
+  - libxc +fortran ^gcc@8
+  - lammps ^gcc
+  - libint~debug~fma+fortran build_system=autotools tune=cp2k-lmax-5 ^gcc
+  - cp2k smm=blas ^gcc
+  - openfoam ^gcc@8
+  - quantum-espresso ^gcc@15
+  - nwchem@master ^gcc
+  - adios2 ^gcc@8
+  - abinit+openmp ^gcc
+  - hdf5+cxx+fortran+hl+ipo+mpi+shared+szip+threadsafe ^gcc
   view: false
   concretizer:
     unify: when_possible

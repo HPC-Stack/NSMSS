@@ -59,9 +59,20 @@ jobs:
           cd $GITHUB_WORKSPACE/src/compilers
           spack env activate .
           spack env status
-          spack concretize
-          spack install
-      
+          spack concretize -f
+          spack install --fail-fast -j30
+
+      - name: Build Appications with GCC
+        run: | 
+          . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
+          echo "==> Applications:"
+          spack compilers
+          cd $GITHUB_WORKSPACE/src/intel86_64-gcc-cpu-almalinux8.9
+          spack env activate .
+          spack env status
+          spack concretize -f
+          spack install --fail-fast -j30
+
       - name: Add mirror
         run: |
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
