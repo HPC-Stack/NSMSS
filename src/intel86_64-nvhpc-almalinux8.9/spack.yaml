@@ -1,6 +1,6 @@
 spack:
   specs:
-  - lammps +mpi +cuda %nvhpc 
+  - lammps +mpi +cuda %nvhpc ^openmpi@4.1.7a1
 
   view: false
 

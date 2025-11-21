@@ -22,69 +22,69 @@ spack:
     slurm:
       externals: []
       buildable: false
-    gawk:
-      externals: []
-    subversion:
-      externals: []
-    binutils:
-      externals: []
-    gmake:
-      externals: []
-    go:
-      externals:
-      - spec: go@1.24.4
-        prefix: /usr
-    findutils:
-      externals: []
-    curl:
-      externals: []
-    diffutils:
-      externals: []
-    git:
-      externals: []
-    m4:
-      externals: []
-    python:
-      externals:
-      - spec: python@3.11.5+bz2+crypt+ctypes+dbm+lzma+pyexpat+pythoncmd+readline+sqlite3+ssl+tix+tkinter+uuid+zlib
-        prefix: /usr
-    cmake:
-      externals: []
-    gettext:
-      externals: []
-    zlib:
-      externals: []
-    libtool:
-      externals: []
     pkgconf:
-      externals: []
-    sed:
-      externals: []
-    openssl:
       externals: []
     openssh:
       externals: []
-    npm:
+    libtool:
       externals: []
     perl:
       externals:
       - spec: perl@5.26.3+cpanm+opcode+open+shared+threads
         prefix: /usr
-    bison:
+    gawk:
       externals: []
-    autoconf:
+    findutils:
       externals: []
-    texinfo:
+    subversion:
       externals: []
-    groff:
-      externals: []
-    automake:
+    tar:
       externals: []
     coreutils:
       externals: []
+    automake:
+      externals: []
+    texinfo:
+      externals: []
+    python:
+      externals:
+      - spec: python@3.11.5+bz2+crypt+ctypes+dbm+lzma+pyexpat+pythoncmd+readline+sqlite3+ssl+tix+tkinter+uuid+zlib
+        prefix: /usr
+    openssl:
+      externals: []
+    m4:
+      externals: []
+    npm:
+      externals: []
+    gettext:
+      externals: []
+    curl:
+      externals: []
+    autoconf:
+      externals: []
     flex:
       externals: []
-    tar:
+    gmake:
+      externals: []
+    sed:
+      externals: []
+    cmake:
+      externals: []
+    binutils:
+      externals: []
+    git:
+      externals: []
+    zlib:
+      externals: []
+    groff:
+      externals: []
+    bison:
+      externals: []
+    go:
+      externals:
+      - spec: go@1.24.4
+        prefix: /usr
+    diffutils:
       externals: []
     gcc:
       externals: []
