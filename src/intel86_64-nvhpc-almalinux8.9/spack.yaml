@@ -1,0 +1,59 @@
+spack:
+  specs:
+  - lammps +mpi +cuda %nvhpc 
+
+  view: false
+
+  concretizer:
+    unify: when_possible
+
+  mirrors:
+    rudra: /scratch/parikshit/spack-cache
+
+  packages:
+    openmpi:
+      externals:
+      - spec: openmpi@4.1.7a1+cuda~cxx~cxx_exceptions~java~memchecker+pmi~rocm~static~wrapper-rpath fabrics=ucx schedulers=slurm
+        prefix: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi
+        extra_attributes:
+          compilers:
+            c: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/bin/mpicc
+            cxx: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/bin/mpicxx
+            fortran: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/bin/mpifort
+      buildable: false
+
+    nccl:
+      externals:
+      - spec: nccl@2.26.5
+        prefix: /home/parikshit/Linux_x86_64/25.5/comm_libs/nccl
+      buildable: false
+
+    cuda:
+      externals:
+      - spec: cuda@12.9.41
+        prefix: /home/parikshit/Linux_x86_64/25.5/cuda
+      buildable: false
+
+    nvhpc:
+      externals:
+      - spec: nvhpc@25.5~blas~lapack~mpi
+        prefix: /home/parikshit/Linux_x86_64/25.5/compilers
+        extra_attributes:
+          compilers:
+            c: /home/parikshit/Linux_x86_64/25.5/compilers/bin/nvc
+            cxx: /home/parikshit/Linux_x86_64/25.5/compilers/bin/nvc++
+            fortran: /home/parikshit/Linux_x86_64/25.5/compilers/bin/nvfortran
+
+          environment:
+            prepend_path:
+              LD_LIBRARY_PATH: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/nccl_rdma_sharp_plugin/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/sharp/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/hcoll/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucc/lib/ucc:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucc/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucx/lib/ucx:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucx/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/nvshmem/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/nccl/lib:/home/parikshit/Linux_x86_64/25.5/math_libs/lib64:/home/parikshit/Linux_x86_64/25.5/compilers/lib:/home/parikshit/Linux_x86_64/25.5/compilers/extras/qd/lib:/home/parikshit/Linux_x86_64/25.5/cuda/lib64
+
+              CPATH: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucc/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucx/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/sharp/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/hcoll/include:/home/parikshit/Linux_x86_64/25.5/compilers/extras/qd/include/qd:/home/parikshit/Linux_x86_64/25.5/comm_libs/nvshmem/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/nccl/include:/home/parikshit/Linux_x86_64/25.5/math_libs/include
+
+      buildable: false
+
+    all:
+      require: '%nvhpc'
+      variants: +pic +ipo +shared +nls ~docs ~doc ~man ~debug cuda_arch=80 ~glx
+      providers:
+        mpi: [openmpi]

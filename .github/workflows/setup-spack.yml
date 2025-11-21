@@ -51,17 +51,6 @@ jobs:
           spack external find
           spack external find --not-buildable slurm
 
-      - name: Build compilers
-        run: | 
-          . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
-          echo "==> Compilers:"
-          spack compilers
-          cd $GITHUB_WORKSPACE/src/compilers
-          spack env activate .
-          spack env status
-          spack concretize -f
-          spack install --fail-fast -j30
-
       - name: Build Appications with GCC
         run: | 
           . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
@@ -70,8 +59,31 @@ jobs:
           cd $GITHUB_WORKSPACE/src/intel86_64-gcc-cpu-almalinux8.9
           spack env activate .
           spack env status
-          spack concretize -f
+          spack concretize -j30 -f
           spack install --fail-fast -j30
+
+      - name: Build Appications with oneapi
+        run: | 
+          . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
+          echo "==> Applications:"
+          spack compilers
+          cd $GITHUB_WORKSPACE/src/intel86_64-oneapi-almalinux8.9
+          spack load gcc@15
+          spack env activate .
+          spack env status
+          spack concretize -j30 -f
+          spack install --fail-fast -j30
+
+      - name: Build Appications with nvhpc
+        run: | 
+          . "${SPACK_INSTALL_DIR}/share/spack/setup-env.sh"
+          echo "==> Compilers:"
+          spack compilers
+          cd $GITHUB_WORKSPACE/src/intel86_64-nvhpc-almalinux8.9
+          spack env activate .
+          spack env status
+          spack concretize -j30 -f
+          spack install --fail-fast -j30  
 
       - name: Add mirror
         run: |

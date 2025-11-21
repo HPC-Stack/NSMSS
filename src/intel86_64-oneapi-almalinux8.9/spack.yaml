@@ -1,0 +1,129 @@
+spack:
+  specs:
+  - intel-oneapi-mpi %oneapi
+  - intel-oneapi-mkl %oneapi
+  - fftw precision=double,float +mpi +openmp %oneapi
+  - lammps fft=mkl +intel +mpi %oneapi ^intel-oneapi-mpi ^intel-oneapi-mkl
+  - hdf5 +fortran +hl +mpi %oneapi
+  - gromacs %oneapi  ^intel-oneapi-mpi ^intel-oneapi-mkl
+  - openfoam %oneapi
+  - quantum-espresso %oneapi
+  - nwchem@master %oneapi
+  - wrf %oneapi
+  view: false
+
+  concretizer:
+    unify: true
+
+  mirrors:
+    rudra: /scratch/parikshit/spack-cache
+
+  packages:
+    slurm:
+      externals: []
+      buildable: false
+    gawk:
+      externals: []
+    subversion:
+      externals: []
+    binutils:
+      externals: []
+    gmake:
+      externals: []
+    go:
+      externals:
+      - spec: go@1.24.4
+        prefix: /usr
+    findutils:
+      externals: []
+    curl:
+      externals: []
+    diffutils:
+      externals: []
+    git:
+      externals: []
+    m4:
+      externals: []
+    python:
+      externals:
+      - spec: python@3.11.5+bz2+crypt+ctypes+dbm+lzma+pyexpat+pythoncmd+readline+sqlite3+ssl+tix+tkinter+uuid+zlib
+        prefix: /usr
+    cmake:
+      externals: []
+    gettext:
+      externals: []
+    zlib:
+      externals: []
+    libtool:
+      externals: []
+    pkgconf:
+      externals: []
+    sed:
+      externals: []
+    openssl:
+      externals: []
+    openssh:
+      externals: []
+    npm:
+      externals: []
+    perl:
+      externals:
+      - spec: perl@5.26.3+cpanm+opcode+open+shared+threads
+        prefix: /usr
+    bison:
+      externals: []
+    autoconf:
+      externals: []
+    texinfo:
+      externals: []
+    groff:
+      externals: []
+    automake:
+      externals: []
+    coreutils:
+      externals: []
+    flex:
+      externals: []
+    tar:
+      externals: []
+    gcc:
+      externals: []
+    intel-oneapi-compilers:
+      externals:
+      - spec: intel-oneapi-compilers@2025.2.0
+        prefix: /home/parikshit/intel/oneapi
+
+        extra_attributes:
+          compilers:
+            c: /home/parikshit/intel/oneapi/compiler/2025.2/bin/icx
+            cxx: /home/parikshit/intel/oneapi/compiler/2025.2/bin/icpx
+            fortran: /home/parikshit/intel/oneapi/compiler/2025.2/bin/ifx
+
+        environment:
+          set:
+            MKL_ROOT: /home/parikshit/intel/oneapi/mkl/2025.2
+
+          prepend_path:
+            LD_LIBRARY_PATH:
+            - /home/parikshit/intel/oneapi/tcm/1.4/lib
+            - /home/parikshit/intel/oneapi/umf/0.11/lib
+            - /home/parikshit/intel/oneapi/tbb/2022.2/env/../lib/intel64/gcc4.8
+            - /home/parikshit/intel/oneapi/pti/0.12/lib
+            - /home/parikshit/intel/oneapi/mpi/2021.16/opt/mpi/libfabric/lib
+            - /home/parikshit/intel/oneapi/mpi/2021.16/lib
+            - /home/parikshit/intel/oneapi/mkl/2025.2/lib
+            - /home/parikshit/intel/oneapi/ishmem/1.4/lib
+            - /home/parikshit/intel/oneapi/ippcp/2025.2/lib
+            - /home/parikshit/intel/oneapi/ipp/2022.2/lib
+            - /home/parikshit/intel/oneapi/dnnl/2025.2/lib
+            - /home/parikshit/intel/oneapi/debugger/2025.2/opt/debugger/lib
+            - /home/parikshit/intel/oneapi/dal/2025.6/lib
+            - /home/parikshit/intel/oneapi/compiler/2025.2/opt/compiler/lib
+            - /home/parikshit/intel/oneapi/compiler/2025.2/lib
+            - /home/parikshit/intel/oneapi/ccl/2021.16/lib
+            CPATH:
+            - /home/parikshit/intel/oneapi/umf/0.11/include
+            - /home/parikshit/intel/oneapi/mkl/2025.2/include
+            - /home/parikshit/intel/oneapi/dnnl/2025.2/include
+            - /home/parikshit/intel/oneapi/dev-utilities/2025.2/include
+            - /home/parikshit/intel/oneapi/ccl/2021.16/include

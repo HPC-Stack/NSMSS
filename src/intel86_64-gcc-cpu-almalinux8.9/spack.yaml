@@ -5,22 +5,31 @@
 spack:
   # add package specs to the `specs` list
   specs:
+  - gcc@11
+  - gcc@9.5.0
+  - gcc@12
+  - gcc@13
+  - gcc@14
+  - gcc@15
   - openmpi@4+cxx+cxx_exceptions+fortran+internal-pmix+legacylaunchers+orterunprefix+romio+rsh+static+wrapper-rpath build_system=autotools fabrics:=auto schedulers:=slurm %gcc
-  - openmpi@5 fabrics:=auto schedulers:=slurm %gcc
-  - gromacs %gcc
-  - libint ^gmp+cxx %gcc
-  - libxc +fortran %gcc
-  - lammps %gcc
-  - libint~debug~fma+fortran build_system=autotools tune=cp2k-lmax-5 %gcc
-  - cp2k smm=blas %gcc
-  - openfoam %gcc
-  - quantum-espresso %gcc
-  - nwchem@master %gcc
-  - adios2 %gcc
-  - abinit ^openblas ^fftw ^libxc %gcc
-  - hdf5+cxx+fortran+hl+ipo+mpi+shared+szip+threadsafe %gcc
-
+  - openmpi@5 fabrics:=auto schedulers:=slurm %gcc@15
+  - gromacs %gcc@15
+  - libint ^gmp+cxx %gcc@15
+  - libxc +fortran %gcc@15
+  - lammps %gcc@15
+  - libint~debug~fma+fortran build_system=autotools tune=cp2k-lmax-5 %gcc@15
+  - cp2k smm=blas %gcc@15
+  - openfoam %gcc@15
+  - quantum-espresso %gcc@15
+  - nwchem@master %gcc@15
+  - adios2 %gcc@15
+  - abinit ^openblas ^fftw ^libxc %gcc@15
+  - hdf5+cxx+fortran+hl+ipo+mpi+shared+szip+threadsafe %gcc@15
   view: false
   concretizer:
     unify: when_possible
-  packages: {}
+  packages:
+    all:
+      target: [cascadelake]
+  mirrors:
+    rudra: /scratch/parikshit/spack-cache
