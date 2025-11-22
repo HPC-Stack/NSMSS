@@ -3,6 +3,8 @@
 # It describes a set of packages to be installed, along with
 # configuration settings.
 spack:
+  include:
+  - ../../config/packages.yaml
   # add package specs to the `specs` list
   specs:
   - gcc@11

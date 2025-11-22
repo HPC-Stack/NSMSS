@@ -91,6 +91,8 @@ packages:
     externals:
     - spec: python@3.6.8+bz2+crypt+ctypes+dbm+lzma+pyexpat+pythoncmd+readline+sqlite3+ssl~tkinter+uuid+zlib
       prefix: /usr
+    - spec: python@3.11.5+bz2+crypt+ctypes+dbm+lzma+pyexpat+pythoncmd+readline+sqlite3+ssl+tix+tkinter+uuid+zlib
+      prefix: /usr
   git:
     externals:
     - spec: git@2.43.5~tcltk
@@ -125,3 +127,56 @@ packages:
     externals:
     - spec: slurm@23.02.7
       prefix: /usr
+  openmpi:
+    externals:
+    - spec: openmpi@4.1.7a1+cuda~cxx~cxx_exceptions~java~memchecker+pmi~rocm~static~wrapper-rpath fabrics=ucx schedulers=slurm
+      prefix: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi
+      extra_attributes:
+        compilers:
+          c: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/bin/mpicc
+          cxx: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/bin/mpicxx
+          fortran: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/bin/mpifort
+    buildable: false
+  nccl:
+    externals:
+    - spec: nccl@2.26.5
+      prefix: /home/parikshit/Linux_x86_64/25.5/comm_libs/nccl
+    buildable: false
+  cuda:
+    externals:
+    - spec: cuda@12.9.41
+      prefix: /home/parikshit/Linux_x86_64/25.5/cuda
+    buildable: false
+  nvhpc:
+    externals:
+    - spec: nvhpc@25.5~blas~lapack~mpi
+      prefix: /home/parikshit/Linux_x86_64/25.5/compilers
+      extra_attributes:
+        compilers:
+          c: /home/parikshit/Linux_x86_64/25.5/compilers/bin/nvc
+          cxx: /home/parikshit/Linux_x86_64/25.5/compilers/bin/nvc++
+          fortran: /home/parikshit/Linux_x86_64/25.5/compilers/bin/nvfortran
+        environment:
+          prepend_path:
+            LD_LIBRARY_PATH: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/nccl_rdma_sharp_plugin/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/sharp/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/hcoll/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucc/lib/ucc:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucc/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucx/lib/ucx:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucx/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/nvshmem/lib:/home/parikshit/Linux_x86_64/25.5/comm_libs/nccl/lib:/home/parikshit/Linux_x86_64/25.5/math_libs/lib64:/home/parikshit/Linux_x86_64/25.5/compilers/lib:/home/parikshit/Linux_x86_64/25.5/compilers/extras/qd/lib:/home/parikshit/Linux_x86_64/25.5/cuda/lib64
+            CPATH: /home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ompi/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucc/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/ucx/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/sharp/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/12.9/hpcx/hpcx-2.20/hcoll/include:/home/parikshit/Linux_x86_64/25.5/compilers/extras/qd/include/qd:/home/parikshit/Linux_x86_64/25.5/comm_libs/nvshmem/include:/home/parikshit/Linux_x86_64/25.5/comm_libs/nccl/include:/home/parikshit/Linux_x86_64/25.5/math_libs/include
+    buildable: false
+  go:
+    externals:
+    - spec: go@1.24.4
+      prefix: /usr
+  intel-oneapi-compilers:
+    externals:
+    - spec: intel-oneapi-compilers@2025.2.0
+      prefix: /home/parikshit/intel/oneapi
+      extra_attributes:
+        compilers:
+          c: /home/parikshit/intel/oneapi/compiler/2025.2/bin/icx
+          cxx: /home/parikshit/intel/oneapi/compiler/2025.2/bin/icpx
+          fortran: /home/parikshit/intel/oneapi/compiler/2025.2/bin/ifx
+        environment:
+          set:
+            MKL_ROOT: /home/parikshit/intel/oneapi/mkl/2025.2
+          prepend_path:
+            LD_LIBRARY_PATH: /home/parikshit/intel/oneapi/tcm/1.4/lib:/home/parikshit/intel/oneapi/umf/0.11/lib:/home/parikshit/intel/oneapi/tbb/2022.2/env/../lib/intel64/gcc4.8:/home/parikshit/intel/oneapi/pti/0.12/lib:/home/parikshit/intel/oneapi/mpi/2021.16/opt/mpi/libfabric/lib:/home/parikshit/intel/oneapi/mpi/2021.16/lib:/home/parikshit/intel/oneapi/mkl/2025.2/lib:/home/parikshit/intel/oneapi/ishmem/1.4/lib:/home/parikshit/intel/oneapi/ippcp/2025.2/lib:/home/parikshit/intel/oneapi/ipp/2022.2/lib:/home/parikshit/intel/oneapi/dnnl/2025.2/lib:/home/parikshit/intel/oneapi/debugger/2025.2/opt/debugger/lib:/home/parikshit/intel/oneapi/dal/2025.6/lib:/home/parikshit/intel/oneapi/compiler/2025.2/opt/compiler/lib:/home/parikshit/intel/oneapi/compiler/2025.2/lib:/home/parikshit/intel/oneapi/ccl/2021.16/lib
+            CPATH: /home/parikshit/intel/oneapi/umf/0.11/include:/home/parikshit/intel/oneapi/mkl/2025.2/include:/home/parikshit/intel/oneapi/dnnl/2025.2/include:/home/parikshit/intel/oneapi/dev-utilities/2025.2/include:/home/parikshit/intel/oneapi/ccl/2021.16/include
